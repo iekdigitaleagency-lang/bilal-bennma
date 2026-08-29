@@ -14,6 +14,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Évite que la navigation fixe (logo + compte à rebours) ne recouvre le
+   haut de la section ciblée lors d'un clic sur une ancre. */
+section[id] {
+  scroll-margin-top: 6.5rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

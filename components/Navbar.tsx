@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { nav, site } from "@/data/content";
 import { useReducedMotion } from "@/lib/useReducedMotion";
+import { CountdownTimer } from "./CountdownTimer";
+
+const MID = Math.ceil(nav.length / 2);
+const navLeft = nav.slice(0, MID);
+const navRight = nav.slice(MID);
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,32 +42,62 @@ export function Navbar() {
         scrolled ? "bg-ink/85 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="section-shell flex h-20 items-center justify-between">
+      {/* Détail tricolore, discret et permanent en tête de chaque section */}
+      <div
+        aria-hidden="true"
+        className="h-[2px] w-full bg-gradient-to-r from-france-blue via-paper to-accent opacity-70"
+      />
+
+      <nav
+        aria-label="Navigation principale"
+        className="section-shell relative flex h-24 items-center justify-between md:h-28"
+      >
+        <ul className="hidden items-center gap-7 lg:flex">
+          {navLeft.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                className="text-sm uppercase tracking-wide text-paper/80 transition-colors duration-300 hover:text-accent"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Logo — bouton d'accueil, présent et centré sur toutes les sections */}
         <a
           href="#top"
-          className="font-serif text-lg font-semibold tracking-wide text-paper"
+          aria-label={site.logo.alt}
+          className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2"
         >
-          {site.project}
+          <Image
+            src={site.logo.src}
+            alt=""
+            width={480}
+            height={687}
+            priority
+            className="h-11 w-auto md:h-14"
+          />
+          <CountdownTimer />
         </a>
 
-        <nav className="hidden md:block" aria-label="Navigation principale">
-          <ul className="flex items-center gap-8">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-sm uppercase tracking-wide text-paper/80 transition-colors duration-300 hover:text-accent"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <ul className="hidden items-center gap-7 lg:flex">
+          {navRight.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                className="text-sm uppercase tracking-wide text-paper/80 transition-colors duration-300 hover:text-accent"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
         <button
           type="button"
-          className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="relative z-50 ml-auto flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
@@ -78,14 +114,14 @@ export function Navbar() {
             }`}
           />
         </button>
-      </div>
+      </nav>
 
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
             id="mobile-menu"
             aria-label="Navigation mobile"
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-ink md:hidden"
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-ink lg:hidden"
             initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={reducedMotion ? { opacity: 1 } : { opacity: 0 }}

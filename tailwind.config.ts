@@ -13,6 +13,8 @@ const config: Config = {
         paper: "#F5F3EF",
         accent: "#C1272D",
         "accent-dim": "#7A1B1F",
+        "france-blue": "#0055A4",
+        "france-blue-dim": "#1B2E52",
       },
       fontFamily: {
         serif: ["var(--font-editorial)", "Georgia", "serif"],

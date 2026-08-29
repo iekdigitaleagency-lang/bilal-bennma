@@ -16,6 +16,11 @@ export const site = {
   url: "https://billal-bennama.vercel.app",
   ogImage: "/og-image.jpg",
   locale: "fr_FR",
+  // Logo utilisé comme bouton d'accueil dans la navigation (fond transparent).
+  logo: {
+    src: "/logo.png",
+    alt: "Billal Bennama — retour à l'accueil",
+  },
 };
 
 export const nav = [
@@ -26,6 +31,15 @@ export const nav = [
   { label: "Partenaires", href: "#partenaires" },
   { label: "Contact", href: "#contact" },
 ];
+
+export const countdown = {
+  label: "JO Los Angeles 2028",
+  // Date d'ouverture prévisionnelle des Jeux Olympiques d'été de Los
+  // Angeles. À ajuster ici si une date officielle différente est
+  // confirmée — le compte à rebours de la navigation se met à jour
+  // automatiquement.
+  targetDate: "2028-07-14T00:00:00-07:00",
+};
 
 export const hero = {
   kicker: "Team France — Boxe",

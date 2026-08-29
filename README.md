@@ -69,6 +69,10 @@ Quelques exemples :
 - **Changer l'email ou le téléphone de contact** : éditez les champs
   `contact.email`, `contact.phone` et `contact.phoneHref` (ce dernier
   au format international, sans espaces, ex. `+33681452413`).
+- **Changer la date du compte à rebours** : éditez `countdown.targetDate`
+  (date d'ouverture des JO de Los Angeles 2028, à ajuster si une date
+  officielle différente est confirmée) et `countdown.label`. Affiché
+  automatiquement sous le logo dans la navigation.
 
 ## Changer les images
 
@@ -80,6 +84,14 @@ Quelques exemples :
 - **Image de partage / Open Graph** (`public/og-image.jpg`) : aperçu
   affiché lors du partage du lien sur les réseaux sociaux et par
   messagerie. Format recommandé : 1200 × 630 px.
+- **Logo** (`public/logo.png`) : marque utilisée comme bouton d'accueil
+  centré dans la navigation (fond transparent, tons clairs). Remplacez
+  ce fichier en conservant un fond transparent pour un rendu propre sur
+  toutes les sections. Le lien texte alternatif se modifie via
+  `site.logo.alt` dans `data/content.ts`.
+- **Favicon** (`app/icon.png`) : icône affichée dans l'onglet du
+  navigateur, générée à partir du logo. Remplacez ce fichier (carré,
+  fond sombre) pour la mettre à jour.
 - **Logos partenaires** : à déposer dans `public/partners/` puis à
   référencer dans `partners.logos` (voir ci-dessus).
 
@@ -90,8 +102,9 @@ il n'y a rien à faire de plus après avoir remplacé les fichiers.
 ## Identité visuelle
 
 - Couleurs : noir profond `#0A0A0A`, blanc cassé `#F5F3EF`, accent
-  rouge `#C1272D`. Modifiables dans `tailwind.config.ts` (clés `ink`,
-  `paper`, `accent`).
+  rouge `#C1272D`, bleu `#0055A4` utilisé en détail (fine ligne sous la
+  navigation, compte à rebours). Modifiables dans `tailwind.config.ts`
+  (clés `ink`, `paper`, `accent`, `france-blue`).
 - Typographies : une serif éditoriale (titres) et une sans-serif
   sobre (texte courant), chargées via `next/font` dans
   `app/layout.tsx`.
